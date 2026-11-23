@@ -1,0 +1,7 @@
+build/
+dist/
+*.app
+*.dmg
+.DS_Store
+node_modules/
+.wrangler/

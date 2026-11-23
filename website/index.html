@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Orbcast — free Mac app for product demo videos</title>
+<meta name="description" content="Record your screen with your face in a floating bubble, trim it, and export an MP4. Free for everyone. No account, no watermark, no limits.">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:title" content="Orbcast — product demos with your face in a bubble">
+<meta property="og:description" content="Free Mac app. Screen + camera + mic. Trim and export MP4. No account, no watermark, no limits.">
+<meta property="og:image" content="https://orbcast.pages.dev/og.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0B0A12;--card:#14121F;--line:#262238;--ink:#fff;--sub:#B4AECB;--muted:#8E88A8;--acc:#6B4DFA;--pink:#FF4D8C}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.5}
+a{color:#C9BCFF}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.glow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(600px 400px at 78% 20%,rgba(107,77,250,.28),transparent 70%),radial-gradient(500px 360px at 10% 95%,rgba(255,60,130,.14),transparent 70%)}
+header{display:flex;align-items:center;justify-content:space-between;padding:22px 0;gap:16px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:20px;color:#fff;text-decoration:none}
+.brand img{width:36px;height:36px}
+nav{display:flex;gap:24px;align-items:center;flex-wrap:wrap;font-size:15px}
+nav a{color:var(--sub);text-decoration:none}
+nav a:hover{color:#fff}
+.gh{display:inline-flex;align-items:center;gap:6px}
+.btn.ghost{background:transparent;border:1px solid #3A3355;color:#EDEBF5}
+.btn.ghost:hover{background:#1C1733}
+table.cmp{width:100%;border-collapse:separate;border-spacing:0;margin-top:32px;font-size:14.5px}
+.cmp-wrap{overflow-x:auto;margin-top:0}
+.cmp th,.cmp td{padding:14px 16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+.cmp thead th{font-size:15px;color:#fff;font-weight:700;border-bottom:1px solid #3A3355}
+.cmp tbody th{color:var(--sub);font-weight:500;white-space:nowrap}
+.cmp td{color:#D7D2EA}
+.cmp .us{background:rgba(107,77,250,.12)}
+.cmp thead .us{border-top-left-radius:12px;border-top-right-radius:12px}
+.cmp td.us{color:#fff;font-weight:600}
+.yes{color:#5BE39B;font-weight:600}.no{color:#8E88A8}
+.note{color:var(--muted);font-size:13px;margin-top:14px}
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--acc);color:#fff;text-decoration:none;font-weight:600;border-radius:999px;padding:14px 26px;font-size:16px;border:0;cursor:pointer;transition:transform .15s,background .15s}
+.btn:hover{background:#7C61FF;transform:translateY(-1px)}
+.btn.small{padding:9px 18px;font-size:14px;background:#fff;color:var(--bg)}
+.btn.small:hover{background:#ECE9FF}
+.btn svg{width:20px;height:20px}
+.hero{position:relative;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;padding:56px 0 80px}
+.pill{display:inline-block;border:1px solid #3A3355;background:#1C1733;border-radius:999px;padding:6px 14px;font-size:13px;color:#D9D2FF}
+h1{font-size:clamp(40px,6vw,66px);line-height:1.04;letter-spacing:-.025em;margin:18px 0 0;font-weight:800}
+.lead{font-size:19px;color:var(--sub);max-width:520px;margin:20px 0 0}
+.cta{margin-top:30px;display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+.meta{font-size:13.5px;color:var(--muted)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
+.chips span{border:1px solid #3A3355;border-radius:999px;padding:5px 12px;font-size:13px;color:#DCD7EE}
+.shot{position:relative;justify-self:center}
+.shot img{width:min(380px,100%);height:auto;display:block;border-radius:22px;box-shadow:0 40px 120px rgba(107,77,250,.35),0 10px 30px rgba(0,0,0,.5)}
+section{padding:72px 0}
+h2{font-size:clamp(30px,4vw,42px);letter-spacing:-.015em;margin:0;font-weight:800}
+.sub{color:var(--sub);font-size:17px;margin:10px 0 0;max-width:620px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:36px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px}
+.card .dot{width:36px;height:36px;border-radius:10px;background:#221C45;display:flex;align-items:center;justify-content:center}
+.card .dot i{width:14px;height:14px;border-radius:50%;background:var(--pink)}
+.card:nth-child(even) .dot i{background:#9B7CFF}
+.card h3{margin:16px 0 6px;font-size:17px}
+.card p{margin:0;color:#A9A3C0;font-size:14.5px}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:32px;counter-reset:s}
+.step{border-top:2px solid var(--acc);padding-top:18px}
+.step:nth-child(2){border-color:#9B5CF0}.step:nth-child(3){border-color:var(--pink)}
+.step b{display:block;font-size:13px;color:#B9A8FF;letter-spacing:.04em}
+.step h3{margin:6px 0;font-size:19px}
+.step p{margin:0;color:#A9A3C0}
+.free{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:44px;display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center}
+.free ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.free li{background:#1C1930;border:1px solid #2B2645;border-radius:12px;padding:12px 14px;display:flex;gap:10px;align-items:center;font-size:14.5px}
+.free li svg{flex:none}
+.install{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}
+.install .card ol{margin:10px 0 0;padding-left:20px;color:#CFC9E3}
+.install .card li{margin:6px 0}
+kbd{background:#221F36;border:1px solid #3A3355;border-radius:6px;padding:1px 6px;font-family:inherit;font-size:13px}
+.final{text-align:center;background:linear-gradient(180deg,#1A1530,#120F22);border:1px solid #332A5C;border-radius:24px;padding:56px 24px}
+.final img{width:88px;height:88px}
+.final h2{margin-top:14px}
+.final .cta{align-items:center}
+footer{border-top:1px solid #1F1C2E;padding:28px 0 48px;color:var(--muted);font-size:14px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer a{color:var(--muted);text-decoration:none;margin-left:18px}
+footer a:hover{color:#fff}
+@media (max-width:860px){.hero-grid,.free,.install{grid-template-columns:1fr}.grid,.steps{grid-template-columns:1fr}.shot{order:-1}.free{padding:28px}}
+@media (max-width:520px){.free ul{grid-template-columns:1fr}nav a:not(.btn):not(.gh){display:none}.gh span{display:none}}
+</style>
+</head>
+<body>
+<div class="hero">
+<div class="glow"></div>
+<div class="wrap">
+<header>
+<a class="brand" href="/"><img src="/icon.png" alt="">Orbcast</a>
+<nav aria-label="Main">
+<a href="#features">Features</a>
+<a href="#compare">Compare</a>
+<a href="#install">Install</a>
+<a class="gh" href="https://github.com/heres-sathya/orbcast" aria-label="Orbcast on GitHub"><svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg><span>GitHub</span></a>
+<a class="btn small" href="/Orbcast.dmg" download>Download</a>
+</nav>
+</header>
+<div class="hero-grid">
+<div>
+<span class="pill">Free Mac app · No subscription</span>
+<h1>Product demos with your face in a bubble.</h1>
+<p class="lead">Record your screen with a floating camera, trim it, and paste an MP4 anywhere. Built for founders, PMs and sales teams who record demos every week.</p>
+<div class="cta">
+<a class="btn" href="/Orbcast.dmg" download>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="M7 10l5 5 5-5"/><path d="M5 20h14"/></svg>
+Download for Mac — free</a>
+<span class="meta">Orbcast.dmg · 1.3 MB · macOS 15 or later · Apple Silicon &amp; Intel</span>
+<a class="btn ghost" style="padding:10px 18px;font-size:14px;margin-top:4px" href="https://github.com/heres-sathya/orbcast"><svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>Star on GitHub — open source, MIT</a>
+</div>
+<div class="chips"><span>No account</span><span>No watermark</span><span>No time limits</span><span>Nothing uploaded</span></div>
+</div>
+<div class="shot"><img src="/panel.png" alt="Orbcast control panel with screen, camera and microphone pickers, bubble shape and size, and a Start Recording button" width="613" height="1166"></div>
+</div>
+</div>
+</div>
+
+<main class="wrap">
+<section id="features">
+<h2>Everything a demo needs. Nothing it doesn’t.</h2>
+<p class="sub">A small native app that does the recording part really well.</p>
+<div class="grid">
+<div class="card"><div class="dot"><i></i></div><h3>Floating camera bubble</h3><p>Circle, rounded square or 16:9. Drag it anywhere, four sizes, mirrored like a real mirror.</p></div>
+<div class="card"><div class="dot"><i></i></div><h3>Screen, mic and system audio</h3><p>Any display at 1080p or 4K, 30 or 60 fps, with your mic and app audio.</p></div>
+<div class="card"><div class="dot"><i></i></div><h3>Pause, restart, discard</h3><p>Pause without cuts in the file. Redo a fumbled take in one click.</p></div>
+<div class="card"><div class="dot"><i></i></div><h3>Click highlights</h3><p>A soft ripple on every click so viewers can follow along.</p></div>
+<div class="card"><div class="dot"><i></i></div><h3>Trim and export MP4</h3><p>Trim the ends, export a web-ready MP4, copy it and paste into Slack or email.</p></div>
+<div class="card"><div class="dot"><i></i></div><h3>Invisible controls</h3><p>The control panel, recording bar and countdown never appear in your video. <kbd>⌥⌘R</kbd> starts and stops from any app.</p></div>
+</div>
+</section>
+
+<section>
+<h2>From idea to MP4 in three steps</h2>
+<div class="steps">
+<div class="step"><b>STEP 1</b><h3>Press ⌥⌘R</h3><p>Pick your screen, camera and mic once. A 3-2-1 countdown and you’re live.</p></div>
+<div class="step"><b>STEP 2</b><h3>Talk through it</h3><p>Drag your bubble anywhere. Pause, restart a bad take, keep going.</p></div>
+<div class="step"><b>STEP 3</b><h3>Trim and share</h3><p>Trim the edges, export an MP4 and paste it wherever your team talks.</p></div>
+</div>
+</section>
+
+<section id="compare">
+<h2>How Orbcast compares</h2>
+<p class="sub">Orbcast does one job: record great demos on your Mac, for free. If you need hosted share links, viewer analytics or AI editing, the others do more.</p>
+<div class="cmp-wrap">
+<table class="cmp">
+<thead><tr><th scope="col"></th><th scope="col" class="us">Orbcast</th><th scope="col">Tella</th><th scope="col">Loom</th><th scope="col">Screen Studio</th><th scope="col">Cap</th></tr></thead>
+<tbody>
+<tr><th scope="row">Price</th><td class="us">Free</td><td>From ~$13/mo per user, billed yearly</td><td>Free tier, or $18/user/mo</td><td>$9/mo billed yearly, or $29/mo</td><td>Free for personal use; $29/yr commercial; Pro $8.16/mo</td></tr>
+<tr><th scope="row">Free plan limits</th><td class="us">None</td><td>No free plan (7-day trial)</td><td>25 videos, 5 min each</td><td>No free plan</td><td>No commercial use; share links up to 5 min</td></tr>
+<tr><th scope="row">Camera bubble</th><td class="us"><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+<tr><th scope="row">Recordings stay on your Mac</th><td class="us"><span class="yes">✓</span></td><td><span class="no">Cloud-based</span></td><td><span class="no">Cloud-based</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span> Studio mode</td></tr>
+<tr><th scope="row">Open source</th><td class="us"><span class="yes">✓</span> MIT</td><td><span class="no">—</span></td><td><span class="no">—</span></td><td><span class="no">—</span></td><td><span class="yes">✓</span> AGPL</td></tr>
+<tr><th scope="row">Hosted share links</th><td class="us"><span class="no">— (MP4 file)</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+<tr><th scope="row">Best for</th><td class="us">Fast, private demo videos at zero cost</td><td>Polished videos with AI editing</td><td>Quick async team messages</td><td>Beautiful auto-zoom product videos</td><td>Open-source Loom-style sharing</td></tr>
+</tbody>
+</table>
+</div>
+<p class="note">Prices in USD, checked November 2026 on each vendor's site or docs; they change often, so check before you buy. Trademarks belong to their owners.</p>
+</section>
+
+<section id="free">
+<div class="free">
+<div>
+<span class="pill" style="color:#FF8CB4;border-color:#6E2850;background:#2A1022">NO PLANS. NO PAYWALLS.</span>
+<h2 style="margin-top:14px">Free. For everyone. Forever.</h2>
+<p class="sub">Every feature for every person. Your videos stay on your Mac, in Movies › Orbcast. The code is <a href="https://github.com/heres-sathya/orbcast">open source on GitHub</a> under the MIT license: read it, build it, improve it.</p>
+</div>
+<ul>
+<li><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7" fill="none" stroke="#FF5C93" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>No subscription</li>
+<li><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7" fill="none" stroke="#FF5C93" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>No account</li>
+<li><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7" fill="none" stroke="#FF5C93" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>No watermark</li>
+<li><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7" fill="none" stroke="#FF5C93" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>No time limits</li>
+<li><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7" fill="none" stroke="#FF5C93" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>4K at 60 fps</li>
+<li><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7" fill="none" stroke="#FF5C93" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Open source (MIT)</li>
+</ul>
+</div>
+</section>
+
+<section id="install">
+<h2>Install in a minute</h2>
+<p class="sub">Orbcast isn’t notarized by Apple yet, so macOS asks you to confirm the first time.</p>
+<div class="install">
+<div class="card">
+<h3 style="margin:0">1. Install</h3>
+<ol>
+<li><a href="/Orbcast.dmg" download>Download Orbcast.dmg</a> and open it, or <a href="https://github.com/heres-sathya/orbcast#build-from-source">build it from source</a>.</li>
+<li>Drag <b>Orbcast</b> into <b>Applications</b>.</li>
+<li>Open Orbcast from Applications.</li>
+</ol>
+</div>
+<div class="card">
+<h3 style="margin:0">2. If macOS blocks it</h3>
+<ol>
+<li>Click <b>Done</b> on the warning.</li>
+<li>Open <b>System Settings › Privacy &amp; Security</b>.</li>
+<li>Scroll down and click <b>Open Anyway</b> next to Orbcast, then confirm.</li>
+</ol>
+</div>
+<div class="card">
+<h3 style="margin:0">3. Allow permissions</h3>
+<ol>
+<li>Allow <b>Camera</b> and <b>Microphone</b> when asked.</li>
+<li>Turn on Orbcast in <b>Screen &amp; System Audio Recording</b>.</li>
+<li>Click <b>Relaunch</b> in Orbcast’s welcome window.</li>
+</ol>
+</div>
+<div class="card">
+<h3 style="margin:0">4. Record</h3>
+<ol>
+<li>Press <kbd>⌥⌘R</kbd> or click <b>Start Recording</b>.</li>
+<li>Press <kbd>⌥⌘R</kbd> again to stop.</li>
+<li>Trim, export MP4, share.</li>
+</ol>
+</div>
+</div>
+</section>
+
+<section>
+<div class="final">
+<img src="/icon.png" alt="Orbcast app icon">
+<h2>Record your next demo in 10 seconds</h2>
+<div class="cta" style="margin-top:22px">
+<a class="btn" href="/Orbcast.dmg" download>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="M7 10l5 5 5-5"/><path d="M5 20h14"/></svg>
+Download for Mac — free</a>
+<span class="meta">macOS 15 or later · Apple Silicon &amp; Intel</span>
+</div>
+</div>
+</section>
+</main>
+
+<div class="wrap">
+<footer>
+<span>© 2026 Orbcast · Made in Chennai</span>
+<span><a href="#features">Features</a><a href="#compare">Compare</a><a href="#install">Install</a><a href="https://github.com/heres-sathya/orbcast">GitHub</a><a href="https://github.com/heres-sathya/orbcast/tree/main/docs">Docs</a><a href="/Orbcast.dmg" download>Download</a></span>
+</footer>
+</div>
+</body>
+</html>
